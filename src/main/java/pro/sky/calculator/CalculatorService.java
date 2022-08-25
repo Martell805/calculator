@@ -1,6 +1,7 @@
 package pro.sky.calculator;
 
 import org.springframework.stereotype.Service;
+import pro.sky.calculator.exceptions.DivisionByZeroException;
 
 @Service
 public class CalculatorService {
@@ -31,7 +32,7 @@ public class CalculatorService {
 
     public String divide(Integer num1, Integer num2){
         if(num1 == null || num2 == null) return parameterWarning;
-        if(num2 == 0) return "<b>You can`t divide by zero</b>";
+        if(num2 == 0) throw new DivisionByZeroException();
 
         return num1 + " / " + num2 + " = " + (num1 / num2);
     }
